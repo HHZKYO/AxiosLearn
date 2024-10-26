@@ -1,7 +1,7 @@
 import './style.css'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://apifoxmock.com/m1/4000302-3636257-default'
+axios.defaults.baseURL = 'http://localhost:8888'
 
 const signInForm = document.querySelector('#signInForm')
 
