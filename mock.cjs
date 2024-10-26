@@ -22,19 +22,7 @@ var server = http.createServer(function(request, response){
   console.log('有个傻子发请求过来啦！路径（带查询参数）为：' + pathWithQuery)
 
   if(path === '/validation_codes'){
-    if(method === 'OPTIONS') {
-      response.statusCode = 200
-      response.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-      response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-      response.setHeader('Access-Control-Allow-Methods', 'POST')
-      response.end()
-    } else if (method === 'POST') {
-      response.statusCode = 200
-      response.setHeader('Content-Type', 'text/json;charset=utf-8')
-      response.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-      response.write(JSON.stringify({}))
-      response.end()
-    }
+    mock(response, {verb: 'POST', status: 200, data: {}})
   } else if(path === '/x'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/css;charset=utf-8')
@@ -45,6 +33,21 @@ var server = http.createServer(function(request, response){
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
     response.write(`你输入的路径不存在对应的内容`)
     response.end()
+  }
+  function mock(response, {verb, status, data}) {
+    if(method === 'OPTIONS') {
+      response.statusCode = 200
+      response.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
+      response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+      response.setHeader('Access-Control-Allow-Methods', verb)
+      response.end()
+    } else if (method === verb) {
+      response.statusCode = status
+      response.setHeader('Content-Type', 'text/json;charset=utf-8')
+      response.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
+      response.write(JSON.stringify(data))
+      response.end()
+    }
   }
 
   /******** 代码结束，下面不要看 ************/
