@@ -1,7 +1,7 @@
 import './style.css'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8888'
+axios.defaults.baseURL = 'https://apifoxmock.com/m1/4000302-3636257-default'
 
 const signInForm = document.querySelector('#signInForm')
 
@@ -15,7 +15,7 @@ sendCodeBtn.addEventListener('click', (e) => {
   const emailInput = document.querySelector('#emailInput')
   if(emailInput === undefined){ return }
   const email = emailInput.value
-  axios.post('/session', { email })
+  axios.post('/validation_codes', { email })
     .then(() => {
       window.alert('发送成功')
     }, () => {
