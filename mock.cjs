@@ -23,6 +23,8 @@ var server = http.createServer(function(request, response){
 
   if(path === '/validation_codes'){
     mock(response, {verb: 'POST', status: 200, data: {}})
+  } else if(path === '/session') {
+    mock(response, {verb: 'POST', status: 200, data: {}})
   } else if(path === '/x'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/css;charset=utf-8')

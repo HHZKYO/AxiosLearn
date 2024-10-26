@@ -15,7 +15,7 @@ sendCodeBtn.addEventListener('click', (e) => {
   const emailInput = document.querySelector('#emailInput')
   if(emailInput === undefined){ return }
   const email = emailInput.value
-  axios.post('/validation_codes', { email })
+  axios.post('/session', { email })
     .then(() => {
       window.alert('发送成功')
     }, () => {
